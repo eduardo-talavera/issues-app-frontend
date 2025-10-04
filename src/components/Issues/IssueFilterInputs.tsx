@@ -1,14 +1,14 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState, ChangeEvent } from 'react';
+import { useEffect, useState, ChangeEvent, memo } from 'react';
 import { useDebounce } from '@/hooks/useDebounce';
 import { IssueFilters } from '@/types/index';
 
 interface Props {
-  filters: IssueFilters;
+  filters: Omit<IssueFilters, 'page' | 'limit'>;
   onChange: React.Dispatch<React.SetStateAction<IssueFilters>>;
 }
 
-export const IssueFilterInputs = ({ filters, onChange }: Props) => {
+export const IssueFilterInputs = memo(({ filters, onChange }: Props) => {
   const [localFilters, setLocalFilters] = useState({
     search: filters.search,
     state: filters.state,
@@ -18,7 +18,9 @@ export const IssueFilterInputs = ({ filters, onChange }: Props) => {
   const debouncedSearch = useDebounce(localFilters.search, 1500);
 
   useEffect(() => {
-    onChange((prev) => ({ ...prev, search: debouncedSearch, page: 1 }));
+    if (filters.search !== localFilters.search) {
+      onChange((prev) => ({ ...prev, search: debouncedSearch, page: 1 }));
+    }
   }, [debouncedSearch]);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
@@ -87,4 +89,4 @@ export const IssueFilterInputs = ({ filters, onChange }: Props) => {
       </button>
     </div>
   );
-};
+});

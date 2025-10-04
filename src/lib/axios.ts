@@ -87,6 +87,13 @@ api.interceptors.response.use(
         return api(originalConfig);
       } catch (refreshError) {
         processQueue(refreshError, null);
+        console.warn(
+            'Refresh token inválido o expirado. Redirigiendo al login...'
+        );
+
+        if (typeof window !== 'undefined') {
+          window.location.href = '/login';
+        }
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

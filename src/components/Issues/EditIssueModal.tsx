@@ -54,11 +54,11 @@ export default function EditIssueModal({ data, issueId }: EditIssueModalProps) {
     <Modal
       showModal={true}
       onClose={() => navigate(location.pathname, { replace: true })}
-      title='Nuevo Ticket'
+      title='Edición de Ticket'
     >
       <p className='text-xl font-bold'>
-        Llena el formulario y crea {''}
-        <span className='text-blue-500'>un ticket</span>
+        Actualiza los datos de {''}
+        <span className='text-blue-500'>tu ticket</span>
       </p>
 
       <form

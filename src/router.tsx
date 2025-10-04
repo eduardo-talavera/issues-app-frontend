@@ -15,6 +15,7 @@ export default function Router() {
             <Route path='/' element={<DashboardView />} index />
             <Route path='/issues' element={<IssuesView />} />
           </Route>
+
           <Route path='/login' element={<LoginView />} />
           <Route path='/404' element={<PageNotFound />} />
           <Route path='/*' element={<Navigate to='/404' />} />
