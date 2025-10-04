@@ -24,11 +24,12 @@ export default function EditIssueModal({ data, issueId }: EditIssueModalProps) {
     defaultValues: {
       title: data.title,
       description: data.description,
+      state: data.state,
+      priority: data.priority
     },
   });
 
   const queryClient = useQueryClient();
-
   const { mutate } = useMutation({
     mutationFn: updateIssue,
     onError: (error) => {
@@ -36,6 +37,7 @@ export default function EditIssueModal({ data, issueId }: EditIssueModalProps) {
     },
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
+      queryClient.invalidateQueries({ queryKey: ['issue', issueId] });
       toast.success(data);
       reset();
       navigate(location.pathname, { replace: true });

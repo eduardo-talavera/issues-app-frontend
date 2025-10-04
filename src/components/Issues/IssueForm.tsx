@@ -52,6 +52,36 @@ export default function IssueForm({ errors, register }: IssueFormProps) {
           <ErrorMessage>{errors.description.message}</ErrorMessage>
         )}
       </div>
+
+      <div>
+        <label className='font-normal text-2xl'>Estado</label>
+        <select
+          id='state'
+          className='w-full p-3  border-gray-300 border'
+          {...register('state', {
+            required: 'Selecciona una opción'
+          })}
+        >
+          <option value='open'>Abierto</option>
+          <option value='in_progress'>En progreso</option>
+          <option value='closed'>Cerrado</option>
+        </select>
+      </div>
+
+      <div>
+        <label className='font-normal text-2xl'>Prioridad</label>
+        <select
+          id='priority'
+          className='w-full p-3  border-gray-300 border'
+          {...register('priority', {
+            required: 'Selecciona una opción'
+          })}
+        >
+          <option value='low'>Baja</option>
+          <option value='medium'>Media</option>
+          <option value='hight'>Alta</option>
+        </select>
+      </div>
     </>
   );
 }

@@ -47,7 +47,7 @@ export const IssuesList = ({ issues }: IssueListProps) => {
             <ul className="mt-5 space-y-5">
               {issues.length === 0 ? (
                 <li className="text-gray-500 text-center pt-3">
-                  No Hay tareas
+                  No Hay Tickets
                 </li>
               ) : (
                 issues.map((issue) => (

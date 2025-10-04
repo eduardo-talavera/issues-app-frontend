@@ -33,7 +33,10 @@ export default function ShowIssueModal({ data }: ShowIssueModalProps) {
         <span className='text-3xl ml-3'>{statesIcons[state]}</span>
       </div>
 
-      <Chip variant={priorityVariants[priority]} size='md' className='mt-10'>
+      <Chip 
+        variant={priorityVariants[priority]} 
+        size='md' 
+        className='mt-10'>
         Prioridad {priorityTranslations[priority]}
       </Chip>
     </Modal>
