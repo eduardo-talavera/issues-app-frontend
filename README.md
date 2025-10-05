@@ -1,54 +1,94 @@
-# React + TypeScript + Vite
+# Issues App Guia de Ejecucion
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<br />
 
-Currently, two official plugins are available:
+## Requerimientos minimos
+- Node >= 22.20.0
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Pasos para ejecución de proyecto frontend
 
-## Expanding the ESLint configuration
+<br />
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+#### Paso 1 ya habiendo configurado el backend lo que sigue es configurar nuestro frontend, empezando por configurar las variables de entorno. Entra al proyecto y renombra el archivo .env.example a .env deberia quedar como a continuación se muestra.
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```shell
+VITE_API_URL=http://localhost:4000
+#CORS_STRATEGY=whitelist #descomentaremos esta variable en un paso posterior
+```
+<br />
+
+#### Nota! Si aún no haz configurado el backend puedes acceder a la guia de configuración haciendo clic en el siguiente enlace. [Guia de configuración proyecto backend](https://github.com/eduardo-talavera/issues-app-backend)
+
+<br />
+
+#### Paso 2 una vez tenemos nuestras variables listas el siguiente paso es abrir el proyecto en una terminal o cmd y ejecutar el siguiente comando para instalar las dependencias.
+
+```shell
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+<br />
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+#### Paso 3 ejecutar el comando a continuacion para arrancar nuestro proyecto en modo de desarrollo esto arrancara el proyecto en localhost en el puerto 5173 👉 http://localhost:5173
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```shell
+npm run dev
 ```
+
+#### Sabremos que todo esta correcto si vemos los siguientes mensajes en consola...
+```shell
+  VITE v6.2.0  ready in 462 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+```
+
+<br />
+
+#### Paso 4 ingresar a  http://localhost:5173/ para loguearnos con un usuario de prueba, a continuacion se muestran un conjunto de usuarios con los cuales puede probar
+```shell
+
+  usuario de prueba 1
+    correo: usuario.prueba_a@mail.com
+    contraseña: password123
+
+  usuario de prueba 2
+    correo: usuario.prueba_b@mail.com
+    contraseña: password_abc
+
+  usuario de prueba 3
+    correo: usuario.prueba_c@mail.com
+    contraseña: password.$&
+```
+
+<br />
+
+#### Una vez logueados la aplicación nos dirigira a la pantalla de issues donde podremos probar todas las funcionalidades.
+
+<br />
+
+### Scripts para pruebas unitarias
+
+<br />
+
+#### Para ejecutar los test ejecute el siguiente comando.
+```shell
+npm run test
+```
+
+<br />
+
+#### Para ejecutar los test con umbral de cobertura ejecute.
+```shell
+npm run coverage
+```
+
+<br />
+
+#### Para ejecutar los test en un entorno con ui escriba.
+```shell
+npm run test:ui
+
+
+
