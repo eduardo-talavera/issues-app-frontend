@@ -3,8 +3,7 @@
 @tailwind utilities;
 
 .btn-primary {
-  @apply 
-    px-10 
+  @apply px-10 
     py-3 
     bg-gradient-to-l 
     hover:bg-gradient-to-r
@@ -18,8 +17,7 @@
 }
 
 .btn-primary-sm {
-  @apply 
-    px-5
+  @apply px-5
     py-2 
     bg-gradient-to-l 
     hover:bg-gradient-to-r
@@ -36,5 +34,3 @@
 .custom-input {
   @apply px-3 py-1 border-gray-300 border rounded-md min-w-[200px];
 }
-
-

@@ -1,6 +1,6 @@
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 import { UserLoginFormData } from '@/types/index';
-import { ErrorMessage } from '../../ui/ErrorMessage';
+import { ErrorMessage } from '@/ui/ErrorMessage';
 
 type IssueFormProps = {
   errors: FieldErrors<UserLoginFormData>;

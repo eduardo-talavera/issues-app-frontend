@@ -4,11 +4,12 @@ import AddIssueModal from '@/components/Issues/AddIssueModal';
 import { IssuesList } from '@/components/Issues/IssuesList';
 import GetIssueData from '@/components/Issues/GetIssueData';
 import { getIssues } from '@/api/IssuesApi';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { IssueFilterInputs } from '@/components/Issues/IssueFilterInputs';
 import { Issue, IssueFilters } from '@/types/index';
 import { IssuesPaginator } from '@/components/Issues/IssuesPaginator';
 import { useAuth } from '@/auth/AuthProvider';
+import { IssuesSkeleton } from '@/components/Issues/IssuesSkeleton';
 
 export const IssuesView = () => {
   const location = useLocation();
@@ -23,20 +24,34 @@ export const IssuesView = () => {
     limit: 5,
   });
 
+  const [
+    showLoaderSkeleton, 
+    setShowLoaderSkeleton] = useState(false);
+
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['issues', filters],
     queryFn: () => getIssues(filters),
     retry: 2,
   });
 
+  useEffect(() => {
+    if (isLoading) {
+      setShowLoaderSkeleton(true);
+    } else {
+      const timer = setTimeout(() => setShowLoaderSkeleton(false), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
   if (error?.message === 'Usuario no encontrado')
     return <Navigate to='/login' />;
 
   if (isError) return <Navigate to='/404' />;
-  if (isLoading) return <p>Cargando...</p>;
 
-  const issues: Issue[] = data.data;
-  const pagination = data.pagination;
+  if (showLoaderSkeleton) return <IssuesSkeleton />
+  
+  const issues: Issue[] = data?.data || [];
+  const pagination = data?.pagination;
 
   return (
     <div>
@@ -75,6 +90,6 @@ export const IssuesView = () => {
       <IssuesList issues={issues} />
       <AddIssueModal />
       <GetIssueData />
-    </div>
+    </div>  
   );
 };
