@@ -87,6 +87,8 @@ npm run coverage
 npm run test:ui
 ```
 
+<br />
+
 ### Caracteristicas y funcionalidades de la app
 
 ##### ✅ Autenticación segura mediante JWT cookies only y refreshTokens
@@ -100,7 +102,7 @@ npm run test:ui
 ##### ✅ Implementacion de pruebas unitarias
 ##### ✅ Validación de formularios con react-hook-form
 ##### ✅ Integración con loader skeleton
-##### ✅ App Adaptada a distintas resoluciones
+##### ✅ App adaptada a distintas resoluciones
 
 
 
