@@ -13,7 +13,6 @@
 
 ```shell
 VITE_API_URL=http://localhost:4000
-#CORS_STRATEGY=whitelist #descomentaremos esta variable en un paso posterior
 ```
 <br />
 
@@ -70,25 +69,33 @@ npm run dev
 
 ### Scripts para pruebas unitarias
 
-<br />
 
 #### Para ejecutar los test ejecute el siguiente comando.
 ```shell
 npm run test
 ```
 
-<br />
 
 #### Para ejecutar los test con umbral de cobertura ejecute.
 ```shell
 npm run coverage
 ```
 
-<br />
 
 #### Para ejecutar los test en un entorno con ui escriba.
 ```shell
 npm run test:ui
+```
+
+### Caracteristicas y funcionalidades de la app
+
+##### ✅ Autenticación segura mediante JWT cookies only y refreshTokens
+##### ✅ Actualización de estado mediante eventos drag and drop
+##### ✅ Gestion de estado y peticiones al servidor con TanStack Query
+##### ✅ Implementacion de pruebas unitarias
+##### ✅ Validación de formularios con react-hook-form
+##### ✅ Integración con loader skeleton
+##### ✅ App Adaptada a distintas resoluciones
 
 
 
