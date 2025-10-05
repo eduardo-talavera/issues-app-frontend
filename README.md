@@ -45,7 +45,7 @@ npm run dev
 
 <br />
 
-#### Paso 4 ingresar a  http://localhost:5173/ para loguearnos con un usuario de prueba, a continuacion se muestran un conjunto de usuarios con los cuales puede probar
+#### Paso 4 ingresar a  http://localhost:5173/login para loguearnos con un usuario de prueba, a continuacion se muestran un conjunto de usuarios con los cuales puede probar
 ```shell
 
   usuario de prueba 1
@@ -90,6 +90,11 @@ npm run test:ui
 ### Caracteristicas y funcionalidades de la app
 
 ##### ✅ Autenticación segura mediante JWT cookies only y refreshTokens
+##### ✅ Filtrado de issues por prioridad estado, titulo y descripcion
+##### ✅ Paginacion de resultados
+##### ✅ Formularios de edicion y creacion de issues
+##### ✅ Datos de la sesion del usuario persistidos con context API
+##### ✅ Gestion de alertas en mensajes de error y de exito
 ##### ✅ Actualización de estado mediante eventos drag and drop
 ##### ✅ Gestion de estado y peticiones al servidor con TanStack Query
 ##### ✅ Implementacion de pruebas unitarias
