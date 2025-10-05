@@ -55,9 +55,9 @@ export const IssuesView = () => {
 
   return (
     <div>
-      <div className='flex flex-wrap justify-between items-start mb-5'>
+      <div className='flex flex-col md:flex-row md:justify-between items-center md:items-start mb-5'>
         <div>
-          <h1 className='text-5xl font-black'>Tickets</h1>
+          <h1 className='text-5xl font-black text-center md:text-left'>Tickets</h1>
           <p className='text-xl font-medium mt-5'>
             Hola! <span className='text-blue-500'>{user.email}</span>{' '}
             <span className='ml-3 text-3xl'>👋</span>
@@ -66,7 +66,7 @@ export const IssuesView = () => {
         <nav className='flex gap-3'>
           <button
             type='button'
-            className='btn-primary'
+            className='btn-primary mt-10 md:mt-0'
             onClick={() => navigate(location.pathname + '?newIssue=true')}
           >
             Crear Ticket

@@ -37,9 +37,13 @@ export const IssueFilterInputs = memo(({ filters, onChange }: Props) => {
   };
 
   return (
-    <div className='flex flex-wrap gap-4 items-end p-4 border rounded-lg mb-4'>
+    <div 
+      className={`
+        flex flex-col md:flex-row flex-wrap gap-4 items-center
+         md:items-end p-4 border rounded-lg mb-5 mt-10 md:mt-0
+      `}>
       <div>
-        <label className='block text-sm font-medium'>Buscar</label>
+        <label className='label-sm'>Buscar</label>
         <input
           type='text'
           name='search'
@@ -51,7 +55,7 @@ export const IssueFilterInputs = memo(({ filters, onChange }: Props) => {
       </div>
 
       <div>
-        <label className='block text-sm font-medium'>Estado</label>
+        <label className='label-sm'>Estado</label>
         <select
           name='state'
           value={localFilters.state}
@@ -66,7 +70,7 @@ export const IssueFilterInputs = memo(({ filters, onChange }: Props) => {
       </div>
 
       <div>
-        <label className='block text-sm font-medium'>Prioridad</label>
+        <label className='label-sm'>Prioridad</label>
         <select
           name='priority'
           value={localFilters.priority}
@@ -83,7 +87,7 @@ export const IssueFilterInputs = memo(({ filters, onChange }: Props) => {
       <button
         type='button'
         onClick={applyFilters}
-        className='btn-primary-sm'
+        className='btn-primary-sm mt-5 sm:mt-0'
       >
         Filtrar
       </button>

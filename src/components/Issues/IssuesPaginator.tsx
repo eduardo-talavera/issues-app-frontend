@@ -12,8 +12,8 @@ export const IssuesPaginator = ({ page, pagination, onChange, className }: Props
   const [,setLocalPage] = useState(page);
 
   return (
-    <div className={`flex justify-between items-center w-[350px] ${className}`}>
-      <button
+    <div className={`flex justify-between items-center px-2 sm:px-0 w-full sm:w-[310px] ${className}`}>
+      <button 
         disabled={page === 1}
         onClick={() => {
           setLocalPage((prev) => {

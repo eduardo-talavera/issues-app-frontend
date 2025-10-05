@@ -10,7 +10,7 @@ export const AppLayout = () => {
     <>
       <header className='bg-white py-5 px-5 shadow-md'>
         <div className='max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center md:container md:mx-auto'>
-          <div className='w-64'>
+          <div className='w-100 lg:w-64 mb-10 lg:mb-0'>
             <Link to='/'>
               <Logo />
             </Link>

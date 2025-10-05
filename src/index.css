@@ -32,5 +32,18 @@
 }
 
 .custom-input {
-  @apply px-3 py-1 border-gray-300 border rounded-md min-w-[200px];
+  @apply px-3 
+    py-2 
+    border-gray-300 
+    border 
+    rounded-md 
+    w-[80vw] 
+    sm:w-[90vw] 
+    md:w-[200px];
+}
+
+.label-sm {
+  @apply block 
+    text-sm 
+    font-medium 
 }
