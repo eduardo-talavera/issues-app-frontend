@@ -1,16 +1,22 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { Bars3Icon } from '@heroicons/react/20/solid'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@/auth/AuthProvider';
 import { useMutation } from '@tanstack/react-query';
 import { logOutUser } from '@/api/AuthApi';
 import { toast } from 'react-toastify';
+import { getRandomString } from '@/utils/helpers';
+import { Avatar, AvatarVariants } from '@/ui/Avatar';
+import { variants } from '@/utils/constants';
 
 export default function NavMenu() {
 
   const navigate = useNavigate();
-  const { clearToken } = useAuth()
+  const { clearToken, user } = useAuth()
+
+  const [name,lastname] = user.name.split(' ');
+  const randomVariant = getRandomString(variants);
 
   const { mutate } = useMutation({
     mutationFn: logOutUser,
@@ -43,13 +49,17 @@ export default function NavMenu() {
         leaveTo="opacity-0 translate-y-1"
       >
         <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen lg:max-w-min -translate-x-1/2 lg:-translate-x-48">
-          <div className="w-full lg:w-56 shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5">
-            <p className='text-center'>Hola: Usuario</p>
-            <Link
-              to='/profile'
-              className='block p-2 hover:text-purple-950'
-            >Mi Perfil</Link>
-    
+          <div className="w-full lg:w-56 shrink rounded-xl bg-white p-4 text-sm font-semibold leading-6 text-gray-900 shadow-lg ring-1 ring-gray-900/5 flex flex-col items-center">
+            <p className='text-center pb-2'>Hola: { user.name }</p>
+
+            <Avatar 
+              variant={randomVariant as AvatarVariants} 
+              size='md'
+            >
+              { name?.at(0) }
+              { lastname?.at(0) }
+            </Avatar>
+
             <button
               className='block p-2 hover:text-purple-950'
               type='button'

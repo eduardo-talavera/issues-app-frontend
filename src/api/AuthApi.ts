@@ -8,7 +8,6 @@ export async function loginUser({ formData }: { formData: UserLoginFormData }) {
         const { data } = await api.post<{ accessToken: string }>('/auth/login', formData)
         return data
     } catch (error) {
-      console.log('loginUserError: ', error)
         if (isAxiosError(error) && error.response) {
             throw new Error(error.response.data.message)
         }

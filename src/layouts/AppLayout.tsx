@@ -4,11 +4,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Logo } from '@/components/Logo';
 import NavMenu from '@/components/NavMenu';
 
+
 export const AppLayout = () => {
   return (
     <>
       <header className='bg-white py-5 px-5 shadow-md'>
-        <div className='max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center'>
+        <div className='max-w-screen-2xl mx-auto flex flex-col lg:flex-row justify-between items-center md:container md:mx-auto'>
           <div className='w-64'>
             <Link to='/'>
               <Logo />
@@ -18,11 +19,11 @@ export const AppLayout = () => {
         </div>
       </header>
 
-      <section className='max-w-screen-2xl mx-auto mt-10 p-5'>
+      <section className='max-w-screen-2xl mx-auto mt-10 p-5 md:container md:mx-auto'>
         <Outlet />
       </section>
 
-      <footer className='py-5'>
+      <footer className='py-5 md:container md:mx-auto'>
         <p className='text-center'>
           &copy; {new Date().getFullYear()} - TicketsApp Todos los derechos
           reservados

@@ -5,13 +5,14 @@ interface Props {
   page: number;
   pagination: Pagination;
   onChange: (page: number) => void;
+  className?: string
 }
 
-export const IssuesPaginator = ({ page, pagination, onChange }: Props) => {
+export const IssuesPaginator = ({ page, pagination, onChange, className }: Props) => {
   const [,setLocalPage] = useState(page);
 
   return (
-    <div className='flex justify-between items-center w-[350px]'>
+    <div className={`flex justify-between items-center w-[350px] ${className}`}>
       <button
         disabled={page === 1}
         onClick={() => {

@@ -14,7 +14,7 @@ export default function LoginView() {
     password: '',
   };
 
-  const { saveToken } = useAuth();
+  const { saveToken, saveUser } = useAuth();
 
   const {
     register,
@@ -34,6 +34,7 @@ export default function LoginView() {
       if (resp?.accessToken) {
         reset();
         saveToken(resp.accessToken);
+        saveUser(resp.accessToken);
         navigate('/issues');
       }
     },

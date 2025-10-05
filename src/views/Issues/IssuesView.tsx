@@ -8,10 +8,12 @@ import { useState } from 'react';
 import { IssueFilterInputs } from '@/components/Issues/IssueFilterInputs';
 import { Issue, IssueFilters } from '@/types/index';
 import { IssuesPaginator } from '@/components/Issues/IssuesPaginator';
+import { useAuth } from '@/auth/AuthProvider';
 
 export const IssuesView = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const [filters, setFilters] = useState<IssueFilters>({
     search: '',
@@ -25,11 +27,7 @@ export const IssuesView = () => {
     queryKey: ['issues', filters],
     queryFn: () => getIssues(filters),
     retry: 2,
-    //staleTime: 1000 * 30, // 30 segundos
-    //placeholderData: 'keepPreviousData',
   });
-
-  console.log('data: ', data)
 
   if (error?.message === 'Usuario no encontrado')
     return <Navigate to='/login' />;
@@ -41,28 +39,38 @@ export const IssuesView = () => {
   const pagination = data.pagination;
 
   return (
-    <div className='px-5 mx-5'>
-      <nav className='my-5 flex gap-3'>
-        <button
-          type='button'
-          className='btn-primary'
-          onClick={() => navigate(location.pathname + '?newIssue=true')}
-        >
-          Crear Ticket
-        </button>
-      </nav>
-      <IssueFilterInputs 
+    <div>
+      <div className='flex flex-wrap justify-between items-start mb-5'>
+        <div>
+          <h1 className='text-5xl font-black'>Tickets</h1>
+          <p className='text-xl font-medium mt-5'>
+            Hola! <span className='text-blue-500'>{user.email}</span>{' '}
+            <span className='ml-3 text-3xl'>👋</span>
+          </p>
+        </div>
+        <nav className='flex gap-3'>
+          <button
+            type='button'
+            className='btn-primary'
+            onClick={() => navigate(location.pathname + '?newIssue=true')}
+          >
+            Crear Ticket
+          </button>
+        </nav>
+      </div>
+      <IssueFilterInputs
         filters={{
-            search: filters.search,
-            state: filters.state,
-            priority: filters.priority,
-        }} 
-        onChange={setFilters} 
+          search: filters.search,
+          state: filters.state,
+          priority: filters.priority,
+        }}
+        onChange={setFilters}
       />
       <IssuesPaginator
         page={filters.page!}
         pagination={pagination}
         onChange={(page) => setFilters({ ...filters, page })}
+        className='mt-5 mb-10'
       />
       <IssuesList issues={issues} />
       <AddIssueModal />

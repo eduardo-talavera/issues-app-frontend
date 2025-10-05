@@ -30,7 +30,7 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
 
   return (
     <>
-      <li className='p-5 bg-white shadow-md flex justify-between gap-3 w-[270px] min-h-[170px]'>
+      <div className='p-5 bg-white shadow-md flex justify-between gap-3 w-[270px] min-h-[170px]'>
         <div className='min-w-0 flex flex-col gap-y-4'>
           <button
             type='button'
@@ -103,7 +103,7 @@ export const IssueCard = ({ issue }: IssueCardProps) => {
             </Transition>
           </Menu>
         </div>
-      </li>
+      </div>
     </>
   );
 };

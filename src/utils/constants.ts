@@ -25,5 +25,7 @@ export const statesSingularTraslations: { [key: string]: string } = {
 export const statesIcons: { [key: string]: string } = {
   open: "👀",
   in_progress: "🚀",
-  closed: "✅",
+  closed: "👍",
 };
+
+export const variants = ['primary', 'danger', 'warning', 'success'];

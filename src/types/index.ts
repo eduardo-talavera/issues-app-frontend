@@ -39,6 +39,7 @@ export const issueSchema = z.object({
 });
 
 export type Issue = z.infer<typeof issueSchema>;
+export type IssueState = z.infer<typeof issuesStatesSchema>
 export type IssueFormData = Pick<
   Issue,
   'title' | 'description' | 'priority' | 'state'

@@ -1,6 +1,6 @@
-import { isAxiosError } from "axios"
-import api from "@/lib/axios"
-import { Issue, IssueFilters, IssueFormData } from "@/types/index"
+import { isAxiosError } from 'axios'
+import api from '@/lib/axios'
+import { Issue, IssueFilters, IssueFormData, IssueState } from '@/types/index'
 
 type IssueAPI = {
     formData: IssueFormData
@@ -43,16 +43,19 @@ export async function getIssueById({ issueId }: Pick<IssueAPI, 'issueId'>) {
     }
 }
 
-export async function updateIssue({ issueId, formData }: Pick<IssueAPI, 'issueId' | 'formData'>) {   
-    try {
-        const url = `/issues/${issueId}`
-        const { data } = await api.put(url, formData)
-        return data
-    } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.message)
-        }
+export async function updateIssue({
+  issueId,
+  formData,
+}: Pick<IssueAPI, 'issueId' | 'formData'>) {
+  try {
+    const url = `/issues/${issueId}`;
+    const { data } = await api.put(url, formData);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message);
     }
+  }
 }
 
 export async function deleteIssue({ issueId }: Pick<IssueAPI, 'issueId'>) {   
@@ -67,14 +70,21 @@ export async function deleteIssue({ issueId }: Pick<IssueAPI, 'issueId'>) {
     }
 }
 
-export async function updateIssueSatate({ issueId, formData }: Pick<IssueAPI, 'issueId' | 'formData'>) {   
-    try {
-        const url = `/issues/${issueId}/state`
-        const { data } = await api.put(url, formData)
-        return data
-    } catch (error) {
-        if (isAxiosError(error) && error.response) {
-            throw new Error(error.response.data.message)
-        }
+export async function updateIssueSatate({
+  issueId,
+  payload
+}: {
+  issueId: string;
+  payload: { state: IssueState; }
+}) {
+  try {
+    const url = `/issues/${issueId}/state`;
+    const { state } = payload
+    const { data } = await api.put<string>(url, { state });
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.message);
     }
+  }
 }
