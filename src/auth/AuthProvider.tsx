@@ -50,7 +50,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   const saveUser = (accessToken: string) => {
     const { email, name } = jwtDecode<UserSession>(accessToken);
     setUser({ name, email });
-    localStorage.setItem('user', JSON.stringify({ name, email }))
+    localStorage.setItem('user', JSON.stringify({ name, email }));
   }
 
   return (

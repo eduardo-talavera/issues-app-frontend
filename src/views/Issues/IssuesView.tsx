@@ -10,11 +10,13 @@ import { Issue, IssueFilters } from '@/types/index';
 import { IssuesPaginator } from '@/components/Issues/IssuesPaginator';
 import { useAuth } from '@/auth/AuthProvider';
 import { IssuesSkeleton } from '@/components/Issues/IssuesSkeleton';
+import { useUI } from '@/contexts/ui/useUI';
 
 export const IssuesView = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { user } = useAuth();
+  const { showLoaderSkeleton, setShowLoaderSkeleton } = useUI();
 
   const [filters, setFilters] = useState<IssueFilters>({
     search: '',
@@ -23,10 +25,6 @@ export const IssuesView = () => {
     page: 1,
     limit: 5,
   });
-
-  const [
-    showLoaderSkeleton, 
-    setShowLoaderSkeleton] = useState(false);
 
   const { data, isLoading, isError, error } = useQuery({
     queryKey: ['issues', filters],
@@ -41,6 +39,7 @@ export const IssuesView = () => {
       const timer = setTimeout(() => setShowLoaderSkeleton(false), 500);
       return () => clearTimeout(timer);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   if (error?.message === 'Usuario no encontrado')

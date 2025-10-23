@@ -19,3 +19,11 @@ export const getRandomString = (strings: string[]): string => {
   const randomIndex = Math.floor(Math.random() * strings.length);
   return strings[randomIndex];
 }
+
+/**
+ * Pausa la ejecución por un número de milisegundos
+ * @param ms Tiempo en milisegundos
+ */
+export const delay = (ms: number) => {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+};

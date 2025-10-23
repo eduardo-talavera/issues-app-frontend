@@ -5,6 +5,8 @@ import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea
 import { updateIssueSatate } from '@/api/IssuesApi';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'react-toastify';
+import { useUI } from '@/contexts/ui/useUI';
+import { delay } from '@/utils/helpers';
 
 interface IssueListProps {
   issues: Issue[];
@@ -21,14 +23,26 @@ const initialStatesGroups: GroupedIssues = {
 };
 
 export const IssuesList = ({ issues }: IssueListProps) => {
+  const { setShowLoaderSkeleton } = useUI();
   const queryClient = useQueryClient();
-  const { mutateAsync } = useMutation({
+
+  const { mutate } = useMutation({
     mutationFn: updateIssueSatate,
-    onSuccess: (message) => {
+
+    onError: async (error) => {
+      await delay(500);
+      setShowLoaderSkeleton(false);
+      toast.error(error.message);
+    },
+    
+    onSuccess: async (message) => {
       queryClient.invalidateQueries({ queryKey: ['issues'] });
+      await delay(500);
+      setShowLoaderSkeleton(false);
       toast.success(message);
     },
   });
+
 
   // Agrupar issues por estado
   const groupedIssues = issues.reduce((acc, issue) => {
@@ -37,7 +51,7 @@ export const IssuesList = ({ issues }: IssueListProps) => {
     return { ...acc, [issue.state]: currentGroup };
   }, initialStatesGroups);
 
-  const handleDragEnd = async (result: DropResult) => {
+  const handleDragEnd = (result: DropResult) => {
     const { destination, source, draggableId } = result;
 
     if (!destination) return; // No se soltó en un destino válido
@@ -46,8 +60,10 @@ export const IssuesList = ({ issues }: IssueListProps) => {
     const issueId = draggableId;
     const newState = destination.droppableId as IssueState;
 
-    await mutateAsync({ issueId, payload: { state: newState }});
+    setShowLoaderSkeleton(true);
+    mutate({ issueId, payload: { state: newState }});
   };
+
 
   return (
     <>

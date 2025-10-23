@@ -27,6 +27,8 @@
       "@/auth/*": ["auth/*"],
       "@/utils/*": ["utils/*"],
       "@/hooks/*": ["hooks/*"],
+      "@/reducers/*": ["reducers/*"],
+      "@/contexts/*": ["contexts/*"],
     },
 
     /* Linting */
